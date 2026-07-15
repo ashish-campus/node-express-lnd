@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <title>Articles</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <%- include('partials/header') %>
+
+    <main class="flex-grow-1 container py-4">
+        <h2 class="mb-4">Articles</h2>
+        <hr>
+        <div class="row">
+            <% locals.articles.forEach(function(element){ %>
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <a href="/articles/<%= element._id %>" class="stretched-link"></a>
+                        <h5 class="card-title"><%= element.title %></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">By <%= element.author %></h6>
+                        <p class="card-text"><%= element.body %></p>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+
+</body>
+</html>

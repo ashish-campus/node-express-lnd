@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Article One",
+        "author": "Ashish Mishra",
+        "body": "This is article one"
+    },
+    {
+        "title": "Article Two",
+        "author": "Ankit Kumar",
+        "body": "This is article two"
+    },
+    {
+        "title": "Article Three",
+        "author": "Hemant Gupta",
+        "body": "This is article three"
+    }
+]

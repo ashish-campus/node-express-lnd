@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <title>Add an Article</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <%- include('partials/header') %>
+
+    <main class="flex-grow-1 container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <a href="/" class="btn btn-outline-secondary btn-sm mb-3">
+                <i class="bi bi-arrow-left"></i> Back to Articles
+            </a>
+
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <h3 class="card-title fw-bold mb-1"><%= locals.article.title %></h3>
+                    <p class="text-muted mb-4">
+                        <i class="bi bi-person-circle me-1"></i> By <%= locals.article.author %>
+                    </p>
+                    <hr>
+                    <p class="card-text fs-5 lh-lg mt-4"><%= locals.article.body %></p>
+                    <hr>
+                    <h6 class="card-title fw-bold mb-1">Article Id: <%= locals.article._id %></h6>
+                    <hr>
+                    <a type="button" href="/articles/edit/<%= locals.article._id %>" class="btn btn-primary"> Edit</a>
+                    <a type="button" href="/articles/delete/<%= locals.article._id %>" class="btn btn-danger"> Delete</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+    <%- include('partials/footer') %>
+
+</body>
+</html>
