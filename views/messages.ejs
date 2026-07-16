@@ -1,0 +1,8 @@
+<div id="messages">
+    <% const msgs = messages || {}; %>
+    <% Object.keys(msgs).forEach(function (type) { %>
+        <% msgs[type].forEach(function (message) { %>
+            <div class="alert alert-<%= type %>"><%= message %></div>
+        <% }) %>
+    <% }) %>
+</div>

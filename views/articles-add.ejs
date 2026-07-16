@@ -11,19 +11,52 @@
     <main class="flex-grow-1 container py-4">
         <h2 class="text-center mb-4">Add an Article</h2>
         <hr>
-
+        <%= console.log(locals.errors) %>
         <form action="/articles/add" method="post">
             <div class="mb-3">
                 <label for="title" class="form-label">Title:</label>
-                <input type="text" name="title" id="title" class="form-control">
+                <input
+                type="text"
+                name="title"
+                id="title"
+                value="<%= locals.errors && locals.errors.title ? locals.errors.title.value : locals.article.title %>"
+                class="form-control <%= locals.errors && locals.errors.title ? 'is-invalid' : '' %>"
+                >
+                 <% if (locals.errors && locals.errors.title) { %>
+                    <div class="invalid-feedback">
+                        <%= locals.errors.title.msg %>
+                    </div>
+                <% } %>
             </div>
             <div class="mb-3">
                 <label for="author" class="form-label">Author:</label>
-                <input type="text" name="author" id="author" class="form-control">
+                <input
+                type="text"
+                name="author"
+                id="author"
+                value="<%= locals.errors && locals.errors.author ? locals.errors.author.value : locals.article.author %>"
+                class="form-control <%= locals.errors && locals.errors.author ? 'is-invalid' : '' %>"
+                >
+                <% if (locals.errors && locals.errors.author) { %>
+                    <div class="invalid-feedback">
+                        <%= locals.errors.author.msg %>
+                    </div>
+                <% } %>
             </div>
             <div class="mb-3">
                 <label for="body" class="form-label">Body:</label>
-                <input type="text" name="body" id="body" class="form-control">
+                <input
+                type="text"
+                name="body"
+                id="body"
+                value="<%= locals.errors && locals.errors.body ? locals.errors.body.value : locals.article.body %>"
+                class="form-control <%= locals.errors && locals.errors.body ? 'is-invalid' : '' %>"
+                >
+                <% if (locals.errors && locals.errors.body) { %>
+                    <div class="invalid-feedback">
+                        <%= locals.errors.body.msg %>
+                    </div>
+                <% } %>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
