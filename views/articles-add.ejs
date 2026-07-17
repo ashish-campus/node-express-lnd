@@ -29,21 +29,6 @@
                 <% } %>
             </div>
             <div class="mb-3">
-                <label for="author" class="form-label">Author:</label>
-                <input
-                type="text"
-                name="author"
-                id="author"
-                value="<%= locals.errors && locals.errors.author ? locals.errors.author.value : locals.article.author %>"
-                class="form-control <%= locals.errors && locals.errors.author ? 'is-invalid' : '' %>"
-                >
-                <% if (locals.errors && locals.errors.author) { %>
-                    <div class="invalid-feedback">
-                        <%= locals.errors.author.msg %>
-                    </div>
-                <% } %>
-            </div>
-            <div class="mb-3">
                 <label for="body" class="form-label">Body:</label>
                 <input
                 type="text"

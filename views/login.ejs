@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <title>Login Page</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <%- include('partials/header') %>
+
+    <main class="flex-grow-1 container py-4">
+        <h2 class="text-center mb-4">Login</h2>
+        <hr>
+        <%- include('messages', { messages: locals.messages }) %>
+        <form action="/users/login" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username:</label>
+                <input
+                type="text"
+                name="username"
+                id="username"
+                value="<%= locals.errors && locals.errors.username ? locals.errors.username.value : locals.loginUser.username %>"
+                class="form-control <%= locals.errors && locals.errors.username ? 'is-invalid' : '' %>"
+                >
+                <% if (locals.errors && locals.errors.username) { %>
+                    <div class="invalid-feedback">
+                        <%= locals.errors.username.msg %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input
+                type="password"
+                name="password"
+                id="password"
+                value="<%= locals.errors && locals.errors.password ? locals.errors.password.value : '' %>"
+                class="form-control <%= locals.errors && locals.errors.password ? 'is-invalid' : '' %>"
+                >
+                <% if (locals.errors && locals.errors.password) { %>
+                    <div class="invalid-feedback">
+                        <%= locals.errors.password.msg %>
+                    </div>
+                <% } %>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </main>
+
+    <%- include('partials/footer') %>
+
+</body>
+</html>

@@ -6,8 +6,13 @@ import Article from './models/articles.js';
 import session from 'express-session';
 import connectFlash from 'connect-flash';
 import router from './routes/article.routes.js'
+import userRouter from './routes/user.route.js'
+import config from './config/database.js';
+import passport from 'passport';
+import passportFunction from './config/passport.js';
+import { ensureAuthentication } from './routes/util.js';
 
-mongoose.connect('mongodb://localhost:27017/nodedb');
+mongoose.connect(config.database);
 
 let db=mongoose.connection;
 
@@ -44,7 +49,19 @@ const expressMessagesMiddleware = (req, res, next) => {
 };
 app.use(expressMessagesMiddleware);
 
-app.get('/', (req, res) => {
+//passport config
+passportFunction(passport);
+
+//passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) => {
+    res.locals.user = req.user || null;
+    next();
+});
+
+app.get('/', ensureAuthentication ,(req, res) => {
     console.log('session on GET /:', req.session);
     Article.find({}).then((articles) => {
         res.render('index', {articles});
@@ -56,5 +73,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/articles',router);
+app.use('/users',userRouter);
 
 app.listen(3000);

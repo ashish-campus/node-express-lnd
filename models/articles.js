@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 //Article Schema
 
-let articleSchema = mongoose.Schema({
+const articleSchema = mongoose.Schema({
     title: {
         type: String,
         required: true

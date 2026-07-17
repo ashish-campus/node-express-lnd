@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <title>Register User</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <%- include('partials/header') %>
+
+    <main class="flex-grow-1 container py-4">
+        <h2 class="text-center mb-4">Register User</h2>
+        <hr>
+        <%- include('messages', { messages: locals.messages }) %>
+        <%= console.log(locals.errors) %>
+        <form action="/users/register" method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input
+                type="text"
+                name="name"
+                id="name"
+                value="<%= locals.errors && locals.errors.name ? locals.errors.name.value : locals.user.name %>"
+                class="form-control <%= locals.errors && locals.errors.name ? 'is-invalid' : '' %>"
+                >
+                 <% if (locals.errors && locals.errors.name) { %>
+                    <div class="invalid-feedback">
+                        <%= locals.errors.name.msg %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username:</label>
+                <input
+                type="text"
+                name="username"
+                id="username"
+                value="<%= locals.errors && locals.errors.username ? locals.errors.username.value : locals.user.username %>"
+                class="form-control <%= locals.errors && locals.errors.username ? 'is-invalid' : '' %>"
+                >
+                <% if (locals.errors && locals.errors.username) { %>
+                    <div class="invalid-feedback">
+                        <%= locals.errors.username.msg %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input
+                type="email"
+                name="email"
+                id="email"
+                value="<%= locals.errors && locals.errors.email ? locals.errors.email.value : locals.user.email %>"
+                class="form-control <%= locals.errors && locals.errors.email ? 'is-invalid' : '' %>"
+                >
+                <% if (locals.errors && locals.errors.email) { %>
+                    <div class="invalid-feedback">
+                        <%= locals.errors.email.msg %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input
+                type="password"
+                name="password"
+                id="password"
+                value="<%= locals.errors && locals.errors.password ? locals.errors.password.value : locals.user.password %>"
+                class="form-control <%= locals.errors && locals.errors.password ? 'is-invalid' : '' %>"
+                >
+                <% if (locals.errors && locals.errors.password) { %>
+                    <div class="invalid-feedback">
+                        <%= locals.errors.password.msg %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="mb-3">
+                <label for="password2" class="form-label"> Confirm Password:</label>
+                <input
+                type="password"
+                name="password2"
+                id="password2"
+                value="<%= locals.errors && locals.errors.password2 ? locals.errors.password2.value : locals.user.password2 %>"
+                class="form-control <%= locals.errors && locals.errors.password2 ? 'is-invalid' : '' %>"
+                >
+                <% if (locals.errors && locals.errors.password2) { %>
+                    <div class="invalid-feedback">
+                        <%= locals.errors.password2.msg %>
+                    </div>
+                <% } %>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </main>
+
+    <%- include('partials/footer') %>
+
+</body>
+</html>
